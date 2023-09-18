@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
@@ -18,17 +19,24 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.bumptech.glide.Glide;
+import com.github.barteksc.pdfviewer.PDFView;
+import com.github.barteksc.pdfviewer.util.FitPolicy;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+
+import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class ViewDetailsActivity extends AppCompatActivity {
 
@@ -61,9 +69,11 @@ public class ViewDetailsActivity extends AppCompatActivity {
 
         // Document Type and Button
         TextView textViewDocumentType = findViewById(R.id.textViewDocumentType);
-        Button buttonViewDocument = findViewById(R.id.buttonViewDocument);
         Button buttonApprove = findViewById(R.id.buttonApprove);
         Button buttonReject = findViewById(R.id.buttonReject);
+
+        // PDFView to display the PDF document
+        PDFView pdfView = findViewById(R.id.pdfView);
 
         // Get data from Intent extras
         Intent intent = getIntent();
@@ -94,9 +104,8 @@ public class ViewDetailsActivity extends AppCompatActivity {
             textViewYoutubeChannelName.setText(Html.fromHtml("<font color='#000000'>Youtube Channel Name: </font>" + (youtubeChannelName != null ? "<font color='#808080'>" + youtubeChannelName + "</font>" : "<font color='#808080'>Not recorded</font>")));
             textViewYoutubeChannelLink.setText("Youtube Channel Link: " + (youtubeChannelLink != null ? youtubeChannelLink : "Not recorded"));
 
-
             // Set Document Type
-            textViewDocumentType.setText("Document Type: " + (documentType != null ? documentType : "Not recorded"));
+            textViewDocumentType.setText(Html.fromHtml("<font color='#000000'>Document Type: </font>" + (documentType != null ? "<font color='#808080'>" + documentType + "</font>" : "<font color='#808080'>Not recorded</font>")));
 
             // Set an OnClickListener on the profile image to show the larger image in a dialog
             imageViewProfile.setOnClickListener(new View.OnClickListener() {
@@ -117,25 +126,11 @@ public class ViewDetailsActivity extends AppCompatActivity {
                 }
             });
 
-            // Button click to view PDF document
-            buttonViewDocument.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // Get the document URL from Intent
-                    String documentUrl = intent.getStringExtra("documentUrl");
+            // Get the document URL from Intent
+            String documentUrl = intent.getStringExtra("documentUrl");
 
-                    // Open the document using an Intent
-                    Intent pdfIntent = new Intent(Intent.ACTION_VIEW);
-                    pdfIntent.setDataAndType(Uri.parse(documentUrl), "application/pdf");
-                    pdfIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
-                    try {
-                        startActivity(pdfIntent);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
+            // Load and display the PDF document
+            new DownloadPdfTask(pdfView).execute(documentUrl);
 
             // Button click to Approve
             buttonApprove.setOnClickListener(new View.OnClickListener() {
@@ -157,17 +152,39 @@ public class ViewDetailsActivity extends AppCompatActivity {
                                             .child("request_verification")
                                             .child(userId)
                                             .child("verification")
-                                            .setValue("1");
-
-                                    // Finish the activity
-                                    finish();
-                                    Toast.makeText(ViewDetailsActivity.this, "Verification Request Approved!", Toast.LENGTH_SHORT).show();
+                                            .setValue("1")
+                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void aVoid) {
+                                                    // Set the "verifyid" child to "2" when the request is approved
+                                                    DatabaseReference creatorsRef = FirebaseDatabase.getInstance().getReference("Creators");
+                                                    creatorsRef.child(userId).child("verifyid").setValue("2").addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                        @Override
+                                                        public void onSuccess(Void aVoid) {
+                                                            finish();
+                                                            Toast.makeText(ViewDetailsActivity.this, "Verification Request Approved!", Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    }).addOnFailureListener(new OnFailureListener() {
+                                                        @Override
+                                                        public void onFailure(@NonNull Exception e) {
+                                                            Toast.makeText(ViewDetailsActivity.this, "Error setting verifyid: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    });
+                                                }
+                                            })
+                                            .addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception e) {
+                                                    Toast.makeText(ViewDetailsActivity.this, "Error updating verification status: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                                }
+                                            });
                                 }
                             })
                             .setNegativeButton("No", null)
                             .show();
                 }
             });
+
 
             // Button click to Reject
             buttonReject.setOnClickListener(new View.OnClickListener() {
@@ -192,6 +209,7 @@ public class ViewDetailsActivity extends AppCompatActivity {
                                         @Override
                                         public void onSuccess(Void aVoid) {
                                             // Deletion of PDF successful
+
                                             // Now, delete the "request_verification" node
                                             DatabaseReference userRef = databaseReference.child(userId);
                                             DatabaseReference requestVerificationRef = userRef.child("request_verification");
@@ -199,8 +217,22 @@ public class ViewDetailsActivity extends AppCompatActivity {
                                                 @Override
                                                 public void onSuccess(Void aVoid) {
                                                     // Deletion of request_verification node successful
-                                                    finish();
-                                                    Toast.makeText(ViewDetailsActivity.this, "Verification Request Rejected!", Toast.LENGTH_SHORT).show();
+
+                                                    // Create the "verifyid" child with the value "1" under the "Creators" table
+                                                    DatabaseReference creatorsRef = FirebaseDatabase.getInstance().getReference("Creators");
+                                                    creatorsRef.child(userId).child("verifyid").setValue("1").addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                        @Override
+                                                        public void onSuccess(Void aVoid) {
+                                                            // "verifyid" created with the value "1" successfully
+                                                            finish();
+                                                            Toast.makeText(ViewDetailsActivity.this, "Verification Request Rejected!", Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    }).addOnFailureListener(new OnFailureListener() {
+                                                        @Override
+                                                        public void onFailure(@NonNull Exception e) {
+                                                            Toast.makeText(ViewDetailsActivity.this, "Error creating verifyid: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    });
                                                 }
                                             }).addOnFailureListener(new OnFailureListener() {
                                                 @Override
@@ -222,8 +254,55 @@ public class ViewDetailsActivity extends AppCompatActivity {
                 }
             });
 
-
-
         }
     }
+
+    private class DownloadPdfTask extends AsyncTask<String, Void, byte[]> {
+        private PDFView pdfView;
+
+        public DownloadPdfTask(PDFView pdfView) {
+            this.pdfView = pdfView;
+        }
+
+        @Override
+        protected byte[] doInBackground(String... params) {
+            String pdfUrl = params[0];
+            try {
+                URL url = new URL(pdfUrl);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.connect();
+
+                int responseCode = connection.getResponseCode();
+                if (responseCode == HttpURLConnection.HTTP_OK) {
+                    InputStream inputStream = new BufferedInputStream(connection.getInputStream());
+                    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                    byte[] buffer = new byte[1024];
+                    int bytesRead;
+                    while ((bytesRead = inputStream.read(buffer)) != -1) {
+                        byteArrayOutputStream.write(buffer, 0, bytesRead);
+                    }
+                    return byteArrayOutputStream.toByteArray();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(byte[] result) {
+            if (result != null) {
+                pdfView.fromBytes(result)
+                        .enableSwipe(true)
+                        .swipeHorizontal(false)
+                        .enableDoubletap(true)
+                        .defaultPage(0)
+                        .pageFitPolicy(FitPolicy.WIDTH)
+                        .load();
+            } else {
+                Toast.makeText(ViewDetailsActivity.this, "Error loading PDF", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
 }

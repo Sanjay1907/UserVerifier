@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imageViewProfile"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:src="@drawable/default_profile_image"
         app:civ_border_width="1dp"
         app:civ_border_color="#FFFFFF" />
@@ -21,6 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/imageViewProfile"
         android:text="Name: "
+        android:textSize="14dp"
         android:layout_marginTop="20dp"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="20dp"/>
@@ -32,6 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/textViewName"
         android:layout_marginTop="8dp"
+        android:textSize="14dp"
         android:text="Contact Number: "
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="20dp"/>
@@ -43,6 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/textViewPhoneNumber"
         android:layout_marginTop="8dp"
+        android:textSize="14dp"
         android:text="Email: "
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="20dp"/>
@@ -54,6 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/textViewEmail"
         android:layout_marginTop="8dp"
+        android:textSize="14dp"
         android:text="Instagram Id: "
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="20dp"/>
@@ -65,6 +73,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/textViewInstagramId"
         android:layout_marginTop="8dp"
+        android:textSize="14dp"
         android:text="Youtube Channel Name: "
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="20dp"/>
@@ -77,6 +86,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/textViewYoutubeChannelName"
         android:layout_marginTop="8dp"
+        android:textSize="14dp"
         android:text="Youtube Channel Link: "
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="20dp"/>
@@ -88,28 +98,40 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/textViewYoutubeChannelLink"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
+        android:textSize="14dp"
         android:text="Document Type: "
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="20dp"/>
 
-    <!-- Button to View PDF Document -->
-    <Button
-        android:id="@+id/buttonViewDocument"
-        style="@style/ButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textViewDocumentType"
-        android:layout_marginTop="8dp"
-        android:text="View Uploaded Document"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="15dp"/>
+
+        <TextView
+            android:id="@+id/textViewDocument"
+            style="@style/TextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewDocumentType"
+            android:layout_marginTop="8dp"
+            android:textSize="14dp"
+            android:text="Uploaded Document"
+            android:textColor="@android:color/darker_gray"
+            android:gravity="center"/>
+
+        <com.github.barteksc.pdfviewer.PDFView
+        android:id="@+id/pdfView"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/textViewDocument"
+        android:background="@drawable/pdf_border"/>
 
     <!-- Horizontal LinearLayout for Approve and Reject Buttons -->
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/buttonViewDocument"
+        android:layout_below="@id/pdfView"
         android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true">
 
@@ -130,4 +152,5 @@
             android:layout_marginLeft="10dp"
             android:text="Reject" />
     </LinearLayout>
-</RelativeLayout>
+    </RelativeLayout>
+</ScrollView>

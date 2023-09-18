@@ -19,6 +19,6 @@
         android:layout_height="wrap_content"
         android:layout_weight="0"
         android:text="View Details"
-        android:backgroundTint="@color/colorPrimary"
+        android:backgroundTint="@color/black"
         android:padding="1dp"/>
 </TableRow>
