@@ -70,6 +70,7 @@ public class ApprovedRequestActivity extends AppCompatActivity {
 
                                             // Pass all details as extras
                                             String email = creatorSnapshot.child("email").getValue(String.class);
+                                            String name2 = creatorSnapshot.child("name2").getValue(String.class);
                                             String profileImage = creatorSnapshot.child("profileImage").getValue(String.class);
                                             String instagramId = creatorSnapshot.child("Instagram id").getValue(String.class);
                                             String youtubeChannelLink = creatorSnapshot.child("Youtube Channel Link").getValue(String.class);
@@ -77,6 +78,7 @@ public class ApprovedRequestActivity extends AppCompatActivity {
 
                                             intent.putExtra("userId", creatorSnapshot.getKey());
                                             intent.putExtra("name", name);
+                                            intent.putExtra("name2", name2);
                                             intent.putExtra("phoneNumber", phoneNumber);
                                             intent.putExtra("email", email);
                                             intent.putExtra("profileImage", profileImage);

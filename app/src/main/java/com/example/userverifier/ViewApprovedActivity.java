@@ -62,6 +62,7 @@ public class ViewApprovedActivity extends AppCompatActivity {
         // Initialize views
         ImageView imageViewProfile = findViewById(R.id.imageViewProfile);
         TextView textViewName = findViewById(R.id.textViewName);
+        TextView textName = findViewById(R.id.textName);
         TextView textViewPhoneNumber = findViewById(R.id.textViewPhoneNumber);
         TextView textViewEmail = findViewById(R.id.textViewEmail);
         TextView textViewInstagramId = findViewById(R.id.textViewInstagramId);
@@ -78,6 +79,7 @@ public class ViewApprovedActivity extends AppCompatActivity {
         if (intent != null) {
             String profileImage = intent.getStringExtra("profileImage");
             String name = intent.getStringExtra("name");
+            String name2 = intent.getStringExtra("name2");
             String phoneNumber = intent.getStringExtra("phoneNumber");
             String email = intent.getStringExtra("email");
             String instagramId = intent.getStringExtra("instagramId");
@@ -95,7 +97,8 @@ public class ViewApprovedActivity extends AppCompatActivity {
                     .into(imageViewProfile);
 
             // Set text values with labels
-            textViewName.setText(Html.fromHtml("<font color='#000000'>Name: </font>" + (name != null ? "<font color='#808080'>" + name + "</font>" : "<font color='#808080'>Not recorded</font>")));
+            textViewName.setText(Html.fromHtml("<font color='#000000'>UserName: </font>" + (name != null ? "<font color='#808080'>" + name + "</font>" : "<font color='#808080'>Not recorded</font>")));
+            textName.setText(Html.fromHtml("<font color='#000000'>Name: </font>" + (name2 != null ? "<font color='#808080'>" + name2 + "</font>" : "<font color='#808080'>Not recorded</font>")));
             textViewPhoneNumber.setText(Html.fromHtml("<font color='#000000'>Contact Number: </font>" + (phoneNumber != null ? "<font color='#808080'>" + phoneNumber + "</font>" : "<font color='#808080'>Not recorded</font>")));
             textViewEmail.setText(Html.fromHtml("<font color='#000000'>Email: </font>" + (email != null ? "<font color='#808080'>" + email + "</font>" : "<font color='#808080'>Not recorded</font>")));
             textViewInstagramId.setText(Html.fromHtml("<font color='#000000'>Instagram Id: </font>" + (instagramId != null ? "<font color='#808080'>" + instagramId + "</font>" : "<font color='#808080'>Not recorded</font>")));

@@ -24,18 +24,30 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/imageViewProfile"
-        android:text="Name: "
+        android:text="UserName: "
         android:textSize="14dp"
         android:layout_marginTop="20dp"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="20dp"/>
+
+        <TextView
+            android:id="@+id/textName"
+            style="@style/TextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewName"
+            android:layout_marginTop="8dp"
+            android:text="Name: "
+            android:textSize="14dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="20dp"/>
 
     <TextView
         android:id="@+id/textViewPhoneNumber"
         style="@style/TextViewStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/textViewName"
+        android:layout_below="@id/textName"
         android:layout_marginTop="8dp"
         android:textSize="14dp"
         android:text="Contact Number: "
