@@ -7,114 +7,164 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imageViewProfile"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:src="@drawable/default_profile_image"
-        app:civ_border_width="1dp"
-        app:civ_border_color="#FFFFFF" />
+        android:layout_height="match_parent"
+        android:background="@drawable/verify_pro">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imageViewProfile"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="110dp"
+            android:src="@drawable/default_profile_image"
+            app:civ_border_width="1dp"
+            app:civ_border_color="#FFFFFF" />
 
-    <TextView
-        android:id="@+id/textViewName"
-        style="@style/TextViewStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/imageViewProfile"
-        android:text="UserName: "
-        android:textSize="14dp"
-        android:layout_marginTop="20dp"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="20dp"/>
+        <TextView
+            android:id="@+id/textViewName"
+            style="@style/TextViewStyle"
+            android:layout_below="@id/imageViewProfile"
+            android:text="UserName: "
+            android:layout_marginTop="20dp"
+            android:layout_alignParentLeft="true"
+            android:textSize="18dp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:paddingLeft="15dp"
+            android:paddingTop="15dp"
+            android:elevation="15dp"
+            android:background="@drawable/bkg_white"
+            android:textColor="@color/black"/>
 
         <TextView
             android:id="@+id/textName"
             style="@style/TextViewStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_below="@id/textViewName"
             android:layout_marginTop="8dp"
             android:text="Name: "
-            android:textSize="14dp"
             android:layout_alignParentLeft="true"
-            android:layout_marginLeft="20dp"/>
+            android:textSize="18dp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:paddingLeft="15dp"
+            android:paddingTop="15dp"
+            android:elevation="15dp"
+            android:background="@drawable/bkg_white"
+            android:textColor="@color/black"/>
 
-    <TextView
-        android:id="@+id/textViewPhoneNumber"
-        style="@style/TextViewStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textName"
-        android:layout_marginTop="8dp"
-        android:textSize="14dp"
-        android:text="Contact Number: "
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="20dp"/>
+        <TextView
+            android:id="@+id/textViewPhoneNumber"
+            style="@style/TextViewStyle"
+            android:layout_below="@id/textName"
+            android:layout_marginTop="8dp"
+            android:text="Contact Number: "
+            android:layout_alignParentLeft="true"
+            android:textSize="18dp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:paddingLeft="15dp"
+            android:paddingTop="15dp"
+            android:elevation="15dp"
+            android:background="@drawable/bkg_white"
+            android:textColor="@color/black"/>
 
-    <TextView
-        android:id="@+id/textViewEmail"
-        style="@style/TextViewStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textViewPhoneNumber"
-        android:layout_marginTop="8dp"
-        android:textSize="14dp"
-        android:text="Email: "
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="20dp"/>
+        <TextView
+            android:id="@+id/textViewEmail"
+            style="@style/TextViewStyle"
+            android:layout_below="@id/textViewPhoneNumber"
+            android:layout_marginTop="8dp"
+            android:text="Email: "
+            android:layout_alignParentLeft="true"
+            android:textSize="18dp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:paddingLeft="15dp"
+            android:paddingTop="15dp"
+            android:elevation="15dp"
+            android:background="@drawable/bkg_white"
+            android:textColor="@color/black"/>
 
-    <TextView
-        android:id="@+id/textViewInstagramId"
-        style="@style/TextViewStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textViewEmail"
-        android:layout_marginTop="8dp"
-        android:textSize="14dp"
-        android:text="Instagram Id: "
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="20dp"/>
+        <TextView
+            android:id="@+id/textViewInstagramId"
+            style="@style/TextViewStyle"
+            android:layout_below="@id/textViewEmail"
+            android:layout_marginTop="8dp"
+            android:text="Instagram Id: "
+            android:layout_alignParentLeft="true"
+            android:textSize="18dp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:paddingLeft="15dp"
+            android:paddingTop="15dp"
+            android:elevation="15dp"
+            android:background="@drawable/bkg_white"
+            android:textColor="@color/black"/>
 
-    <TextView
-        android:id="@+id/textViewYoutubeChannelName"
-        style="@style/TextViewStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textViewInstagramId"
-        android:layout_marginTop="8dp"
-        android:textSize="14dp"
-        android:text="Youtube Channel Name: "
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="20dp"/>
+        <TextView
+            android:id="@+id/textViewYoutubeChannelName"
+            style="@style/TextViewStyle"
+            android:layout_below="@id/textViewInstagramId"
+            android:layout_marginTop="8dp"
+            android:text="Youtube Channel Name: "
+            android:layout_alignParentLeft="true"
+            android:textSize="18dp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:paddingLeft="15dp"
+            android:paddingTop="15dp"
+            android:elevation="15dp"
+            android:background="@drawable/bkg_white"
+            android:textColor="@color/black"/>
 
-    <TextView
-        android:id="@+id/textViewYoutubeChannelLink"
-        style="@style/TextViewStyle"
-        android:autoLink="web"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textViewYoutubeChannelName"
-        android:layout_marginTop="8dp"
-        android:textSize="14dp"
-        android:text="Youtube Channel Link: "
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="20dp"/>
+        <TextView
+            android:id="@+id/textViewYoutubeChannelLink"
+            style="@style/TextViewStyle"
+            android:autoLink="web"
+            android:layout_below="@id/textViewYoutubeChannelName"
+            android:layout_marginTop="8dp"
+            android:text="Youtube Channel Link: "
+            android:layout_alignParentLeft="true"
+            android:textSize="18dp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:paddingLeft="15dp"
+            android:paddingTop="15dp"
+            android:elevation="15dp"
+            android:background="@drawable/bkg_white"
+            android:textColor="@color/black"/>
 
-    <!-- Document Type -->
-    <TextView
-        android:id="@+id/textViewDocumentType"
-        style="@style/TextViewStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textViewYoutubeChannelLink"
-        android:layout_marginTop="8dp"
-        android:textSize="14dp"
-        android:text="Document Type: "
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="20dp"/>
+        <!-- Document Type -->
+        <TextView
+            android:id="@+id/textViewDocumentType"
+            style="@style/TextViewStyle"
+            android:layout_below="@id/textViewYoutubeChannelLink"
+            android:layout_marginTop="8dp"
+            android:text="Document Type: "
+            android:layout_alignParentLeft="true"
+            android:textSize="18dp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:paddingLeft="15dp"
+            android:paddingTop="15dp"
+            android:elevation="15dp"
+            android:background="@drawable/bkg_white"
+            android:textColor="@color/black"
+            />
 
 
         <TextView
@@ -123,46 +173,48 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/textViewDocumentType"
-            android:layout_marginTop="8dp"
-            android:textSize="14dp"
+            android:layout_marginTop="15dp"
+            android:textSize="20dp"
             android:text="Uploaded Document"
             android:textColor="@android:color/darker_gray"
             android:gravity="center"/>
 
         <com.github.barteksc.pdfviewer.PDFView
-        android:id="@+id/pdfView"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_below="@id/textViewDocument"
-        android:background="@drawable/pdf_border"/>
+            android:id="@+id/pdfView"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/textViewDocument"
+            android:background="@drawable/pdf_border"/>
 
-    <!-- Horizontal LinearLayout for Approve and Reject Buttons -->
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/pdfView"
-        android:layout_marginTop="20dp"
-        android:layout_centerHorizontal="true">
-
-        <!-- Approve Button -->
-        <Button
-            android:id="@+id/buttonApprove"
-            style="@style/ApproveButtonStyle"
+        <!-- Horizontal LinearLayout for Approve and Reject Buttons -->
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Approve" />
+            android:layout_below="@id/pdfView"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true">
 
-        <!-- Reject Button -->
-        <Button
-            android:id="@+id/buttonReject"
-            style="@style/RejectButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="Reject" />
-    </LinearLayout>
+            <!-- Approve Button -->
+            <Button
+                android:id="@+id/buttonApprove"
+                style="@style/ApproveButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:text="Approve" />
+
+            <!-- Reject Button -->
+            <Button
+                android:id="@+id/buttonReject"
+                style="@style/RejectButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textSize="18dp"
+                android:text="Reject" />
+        </LinearLayout>
     </RelativeLayout>
 </ScrollView>

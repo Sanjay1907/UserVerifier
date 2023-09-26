@@ -1,5 +1,6 @@
 package com.example.userverifier;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -21,18 +22,24 @@ public class PendingRequestActivity extends AppCompatActivity {
 
     private DatabaseReference databaseReference;
     private TableLayout tableLayout;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pendingrequest);
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Fetching pending requests...");
+        progressDialog.setCancelable(false);
 
         tableLayout = findViewById(R.id.tableLayout);
 
-        // Initialize the Firebase Database reference
+        progressDialog.show();
+
+// Initialize the Firebase Database reference
         databaseReference = FirebaseDatabase.getInstance().getReference("Creators");
 
-        // Read data from the Firebase Realtime Database and filter users with "request_verification" child
+// Read data from the Firebase Realtime Database and filter users with "request_verification" child
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -98,11 +105,12 @@ public class PendingRequestActivity extends AppCompatActivity {
                         }
                     }
                 }
-
+                progressDialog.dismiss();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+                progressDialog.dismiss(); // Dismiss the progress dialog on database read error
                 // Handle database read error
             }
         });

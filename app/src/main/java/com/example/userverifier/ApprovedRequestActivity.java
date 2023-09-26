@@ -1,5 +1,6 @@
 package com.example.userverifier;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -21,14 +22,19 @@ public class ApprovedRequestActivity extends AppCompatActivity {
 
     private DatabaseReference databaseReference;
     private TableLayout tableLayout;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pendingrequest);
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Fetching Approved requests...");
+        progressDialog.setCancelable(false);
 
         tableLayout = findViewById(R.id.tableLayout);
 
+        progressDialog.show();
         // Initialize the Firebase Database reference
         databaseReference = FirebaseDatabase.getInstance().getReference("Creators");
 
@@ -98,11 +104,12 @@ public class ApprovedRequestActivity extends AppCompatActivity {
                         }
                     }
                 }
-
+                progressDialog.dismiss();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+                progressDialog.dismiss();
                 // Handle database read error
             }
         });
