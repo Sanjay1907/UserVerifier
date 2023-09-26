@@ -58,6 +58,9 @@
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">#0000FF</item>
     </style>
+    <style name="RoundedImageView">
+        <item name="cornerSize">40dp</item> <!-- Adjust the cornerSize to control the roundness -->
+    </style>
 
 
 </resources>

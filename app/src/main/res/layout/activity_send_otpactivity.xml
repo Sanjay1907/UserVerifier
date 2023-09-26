@@ -5,29 +5,24 @@
     android:layout_height="match_parent"
     android:overScrollMode="never"
     android:scrollbars="none"
-    tools:context=".SendOTPActivity">
+    tools:context=".SendOTPActivity"
+    android:background="@drawable/verify_login">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="320dp"
         android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="180dp"
-            android:layout_height="180dp"
-            android:layout_marginTop="30dp"
-            android:contentDescription="@string/app_name"
-            android:src="@drawable/sendedotp" >
 
-        </ImageView>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:text="@string/login"
-            android:textColor="@color/colorTextPrimary"
+            android:textColor="@color/blue"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -39,8 +34,9 @@
             android:layout_marginEnd="50dp"
             android:gravity="center"
             android:text="@string/we_will_send_you_a_one_time_password_on_this_mobile_number"
-            android:textColor="@color/colorTextSecondary"
-            android:textSize="14sp"/>
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="15sp"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -50,7 +46,8 @@
             android:layout_marginEnd="30dp"
             android:gravity="center"
             android:text="@string/enter_your_mobile_number"
-            android:textColor="@color/colorTextSecondary"
+            android:textColor="@color/blue"
+            android:textStyle="bold"
             android:textSize="14sp"/>
 
         <LinearLayout
@@ -67,7 +64,7 @@
                 android:layout_height="40dp"
                 android:gravity="center"
                 android:text="@string/_91"
-                android:textColor="@color/colorTextPrimary"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"/>
 
@@ -81,7 +78,7 @@
                 android:imeOptions="actionDone"
                 android:importantForAutofill="no"
                 android:inputType="number"
-                android:textColor="@color/colorTextPrimary"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"/>
         </LinearLayout>
@@ -99,13 +96,14 @@
             android:layout_height="wrap_content">
 
             <Button
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/buttonGetOTP"
-                android:layout_margin="30dp"
-                android:backgroundTint="@color/black"
+                android:layout_marginStart="140dp"
+                android:layout_marginTop="40dp"
+                android:backgroundTint="@color/blue"
                 android:text="@string/get_otp"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold"/>
 

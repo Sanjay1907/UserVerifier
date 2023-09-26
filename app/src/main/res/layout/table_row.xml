@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TableRow xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="390dp"
     android:layout_height="wrap_content"
+    android:layout_marginStart="10dp"
     android:orientation="horizontal"
+    android:backgroundTint="@color/white"
     android:padding="8dp">
 
     <TextView
@@ -19,6 +21,6 @@
         android:layout_height="wrap_content"
         android:layout_weight="0"
         android:text="View Details"
-        android:backgroundTint="@color/black"
+        android:backgroundTint="@color/blue"
         android:padding="1dp"/>
 </TableRow>

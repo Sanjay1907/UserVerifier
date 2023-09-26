@@ -16,4 +16,7 @@
     <color name="red">#d11a2a</color>
     <color name="colorApprove">#4CAF50</color> <!-- Green color for Approve button -->
     <color name="colorReject">#F44336</color>
+    <color name="darkgreen">#015C61</color>
+    <color name="Reddish">#820d0d</color>
+    <color name="blue">#1B5FDE</color>
 </resources>

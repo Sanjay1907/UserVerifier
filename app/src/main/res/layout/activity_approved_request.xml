@@ -7,23 +7,27 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".ApprovedRequestActivity">
+    tools:context=".ApprovedRequestActivity"
+    android:background="@drawable/pending"
+    >
 
     <!-- Pending Approvals Heading -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Approved Requests"
+        android:layout_width="335dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="50dp"
         android:gravity="center"
+        android:text="APPROVED REQUESTS"
+        android:textColor="@color/white"
         android:textSize="24sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         app:cardCornerRadius="8dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         app:cardElevation="4dp">
 
 

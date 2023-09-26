@@ -5,29 +5,22 @@
     android:layout_height="match_parent"
     android:overScrollMode="never"
     android:scrollbars="none"
-    tools:context=".VerifyOTPActivity">
+    tools:context=".VerifyOTPActivity"
+    android:background="@drawable/verify_otp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="320dp"
         android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="180dp"
-            android:layout_height="180dp"
-            android:layout_marginTop="30dp"
-            android:contentDescription="@string/app_name"
-            android:src="@drawable/receiveotp" >
-
-        </ImageView>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:text="@string/otp_verification"
-            android:textColor="@color/colorTextPrimary"
+            android:textColor="@color/blue"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -39,8 +32,9 @@
             android:layout_marginEnd="50dp"
             android:gravity="center"
             android:text="@string/enter_the_6_digit_otp_sent_to_your_mobile_number"
-            android:textColor="@color/colorTextSecondary"
-            android:textSize="14sp"/>
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="15sp"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -159,9 +153,9 @@
                 android:id="@+id/resendOTP"
                 android:layout_marginStart="0dp"
                 android:text="@string/resend_otp"
-                android:textSize="15sp"
-                android:textColor="@color/colorAccent"
-                android:backgroundTint="@color/colorWhite"
+                android:textSize="16sp"
+                android:textColor="@color/blue"
+                android:backgroundTint="@color/white"
                 android:textStyle="bold"/>
         </LinearLayout>
 
@@ -170,13 +164,14 @@
             android:layout_height="wrap_content">
 
             <Button
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/verifyOTP"
-                android:layout_margin="30dp"
-                android:backgroundTint="@color/black"
+                android:layout_marginStart="160dp"
+                android:layout_marginTop="30dp"
+                android:backgroundTint="@color/blue"
                 android:text="@string/verify"
-                android:textColor="@color/colorWhite"
+                android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold"/>
 
