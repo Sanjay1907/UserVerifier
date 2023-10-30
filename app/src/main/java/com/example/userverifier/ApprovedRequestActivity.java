@@ -27,7 +27,7 @@ public class ApprovedRequestActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pendingrequest);
+        setContentView(R.layout.activity_approved_request);
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Fetching Approved requests...");
         progressDialog.setCancelable(false);

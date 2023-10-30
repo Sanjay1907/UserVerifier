@@ -10,7 +10,6 @@
     tools:context=".ApprovedRequestActivity"
     android:background="@drawable/pending"
     >
-
     <!-- Pending Approvals Heading -->
     <TextView
         android:layout_width="335dp"
