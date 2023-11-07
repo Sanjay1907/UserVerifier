@@ -37,7 +37,7 @@
         <GridLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:rowCount="4"
+            android:rowCount="5"
             android:columnCount="1"
             android:layout_marginLeft="110dp"
             android:layout_marginRight="5dp"
@@ -116,13 +116,48 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
             <androidx.cardview.widget.CardView
-                android:id="@+id/btnLogout"
+                android:id="@+id/btnbug"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 app:cardCornerRadius="25dp"
                 android:layout_columnWeight="1"
                 android:layout_rowWeight="1"
                 android:layout_row="3"
+                android:layout_column="0"
+                android:layout_margin="12dp"
+                android:backgroundTint="#FFFFFF"
+                app:cardElevation="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/baseline_bug_report_24" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="Reported Bugs"
+                        android:textColor="@color/blue"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/btnLogout"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                app:cardCornerRadius="25dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_row="4"
                 android:layout_column="0"
                 android:layout_margin="12dp"
                 android:backgroundTint="#FFFFFF"

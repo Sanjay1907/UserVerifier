@@ -22,7 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
 
-    CardView pending, approved, logout;
+    CardView pending, approved, bug, logout;
     FirebaseAuth auth;
 
     @Override
@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         pending = findViewById(R.id.btnpending);
         approved = findViewById(R.id.btnapproved);
+        bug = findViewById(R.id.btnbug);
         logout = findViewById(R.id.btnLogout);
         pending.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,6 +45,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, ApprovedRequestActivity.class);
+                startActivity(intent);
+            }
+        });
+        bug.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, BugListActivity.class);
                 startActivity(intent);
             }
         });
